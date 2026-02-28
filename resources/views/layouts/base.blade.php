@@ -3,9 +3,13 @@
     <head>
         @include('partials.head')
     </head>
-    <body>
+    <body class="bg-amber-50">
+
+        <x-navbar />
 
         {{ $slot }}
+
+        <x-footer />
 
         @fluxScripts
     </body>
