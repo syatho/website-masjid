@@ -1,6 +1,6 @@
 <x-layouts::base title="Halaman Beranda">
     <!-- Hero Section -->
-    <section class="relative h-[600px] bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800 overflow-hidden">
+    <section class="relative bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800 overflow-hidden pt-16 md:pt-0 md:h-[600px]">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -mr-48 -mt-48"></div>
