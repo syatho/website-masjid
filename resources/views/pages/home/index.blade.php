@@ -68,7 +68,7 @@
                 <div class="text-center p-6 rounded-lg bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100">
                     <div class="text-4xl font-bold text-amber-700 mb-2">12+</div>
                     <p class="text-amber-600 font-semibold">Fasilitas Lengkap</p>
-                    <p class="text-sm text-amber-500 mt-2">Untuk kenyamanan jamaah</p>
+                    <p class="text-sm text-amber-500 mt-2">Untuk kenyamanan jamaah dan pengunjung</p>
                 </div>
 
                 <!-- Stat 4 -->
@@ -150,7 +150,7 @@
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-amber-900 mb-4">Fasilitas Lengkap</h2>
                 <p class="text-xl text-amber-700 max-w-2xl mx-auto">
-                    Kami menyediakan berbagai fasilitas untuk kenyamanan dan kemudahan semua jamaah
+                    Kami menyediakan berbagai fasilitas untuk kenyamanan dan kemudahan semua jamaah dan pengunjung
                 </p>
             </div>
 
@@ -170,7 +170,7 @@
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M10 15l5.07-5.07M17.17 7.71L15.9 9c-3.39-3.39-8.79-3.39-12.18 0l1.27 1.27M4.83 10.29L3.56 11.56c3.39 3.39 8.79 3.39 12.18 0l-1.27-1.27"/></svg>
                     </div>
                     <h3 class="text-lg font-bold text-amber-900 mb-2">Free WiFi</h3>
-                    <p class="text-amber-700">Internet gratis tersedia di waktu-waktu tertentu untuk kenyamanan jamaah</p>
+                    <p class="text-amber-700">Internet gratis tersedia di waktu-waktu tertentu untuk kenyamanan jamaah dan pengunjung</p>
                 </div>
 
                 <!-- Facility 3 -->
@@ -179,7 +179,7 @@
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
                     <h3 class="text-lg font-bold text-amber-900 mb-2">CCTV 24 Jam</h3>
-                    <p class="text-amber-700">Sistem keamanan tersentralisasi dengan monitoring penuh sepanjang waktu</p>
+                    <p class="text-amber-700">Sistem keamanan tersentralisasi dengan monitoring penuh sepanjang waktu untuk kenyamanan jamaah dan pengunjung</p>
                 </div>
 
                 <!-- Facility 4 -->
@@ -215,7 +215,7 @@
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
                     </div>
                     <h3 class="text-lg font-bold text-amber-900 mb-2">Pelayanan Akad Nikah</h3>
-                    <p class="text-amber-700">Layanan akad nikah profesional dengan ruang yang indah dan nyaman</p>
+                    <p class="text-amber-700">Layanan akad nikah profesional dengan ruang yang indah dan nyaman untuk jamaah dan pengunjung</p>
                 </div>
 
                 <!-- Facility 8 -->
@@ -233,7 +233,7 @@
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
                     </div>
                     <h3 class="text-lg font-bold text-amber-900 mb-2">Kulkas</h3>
-                    <p class="text-amber-700">Fasilitas kulkas untuk menyimpan minuman dan makanan jamaah</p>
+                    <p class="text-amber-700">Fasilitas kulkas untuk menyimpan minuman dan makanan jamaah dan pengunjung</p>
                 </div>
 
                 <!-- Facility 10 -->
