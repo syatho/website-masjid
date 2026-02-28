@@ -90,7 +90,7 @@
 
         <!-- Bottom Footer -->
         <div class="flex flex-col md:flex-row justify-between items-center text-sm text-amber-200">
-            <p>&copy; 2026 Masjid Syatho Sedan Rembang. Semua hak dilindungi.</p>
+            <p>&copy; {{ now()->year }} Masjid Syatho Sedan Rembang. Semua hak dilindungi.</p>
             <p>Dikelola dengan amanah dan profesional untuk kemajuan umat</p>
         </div>
     </div>
