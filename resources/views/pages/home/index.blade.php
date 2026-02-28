@@ -52,7 +52,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <!-- Stat 1 -->
                 <div class="text-center p-6 rounded-lg bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100">
-                    <div class="text-4xl font-bold text-amber-700 mb-2">5000+</div>
+                    <div class="text-4xl font-bold text-amber-700 mb-2">2000+</div>
                     <p class="text-amber-600 font-semibold">Kapasitas Jamaah</p>
                     <p class="text-sm text-amber-500 mt-2">Ruang luas untuk beribadah bersama</p>
                 </div>
