@@ -32,15 +32,7 @@
 
                 <!-- Right - Icon Illustration -->
                 <div class="flex-1 text-center">
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full opacity-20 blur-2xl"></div>
-                        <div class="relative bg-gradient-to-b from-amber-300 to-amber-500 rounded-2xl p-12 shadow-2xl">
-                            <svg class="w-48 h-48 text-white mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2L15 10L23 10L16.5 15L18.5 23L12 18.5L5.5 23L7.5 15L1 10L9 10Z"/>
-                            </svg>
-                            <p class="text-white font-bold mt-4">Berkah Dunia Akhirat</p>
-                        </div>
-                    </div>
+                    <img src="{{ asset('images/halaman_depan.png') }}" alt="Masjid Syatho" class="w-full max-w-md mx-auto rounded-2xl shadow-2xl">
                 </div>
             </div>
         </div>
