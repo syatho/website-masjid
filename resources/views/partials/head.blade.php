@@ -10,6 +10,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="Website Masjid Syatho Sedan - Melayani umat dengan sepenuh hati" />
 <meta name="keywords" content="masjid, jadwal shalat, kajian Islam, komunitas Muslim" />
+<meta name="google-site-verification" content="rnppDMJTkKP3WB3d2T3YZLJi3yfnCuRT_lIpLLNkCC8" />
 
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
