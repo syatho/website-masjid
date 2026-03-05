@@ -8,9 +8,7 @@ $active = $active ?? 'home';
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
             <a href="/" class="flex-shrink-0 flex items-center gap-2 hover:opacity-80 transition">
-                <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                    S
-                </div>
+                <img src="{{ asset('logo.png') }}" alt="MASJID SYATHO SEDAN" class="h-10 w-auto">
                 <div class="flex flex-col">
                     <span class="text-sm font-bold text-amber-900">MASJID SYATHO</span>
                     <span class="text-xs text-amber-700">Rembang</span>
