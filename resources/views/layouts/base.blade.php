@@ -11,6 +11,8 @@
 
         <x-footer />
 
+        <x-whatsapp-floating />
+
         @fluxScripts
     </body>
 </html>
