@@ -1,59 +1,405 @@
-<x-layouts::auth :title="__('Log in')">
-    <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
+<x-layouts::base :title="'Masuk Akun Masjid'">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-        <!-- Session Status -->
-        <x-auth-session-status class="text-center" :status="session('status')" />
+        :root {
+            --warna-utama: #1e7e34;
+            --warna-utama-gelap: #165c2d;
+            --warna-aksen: #f59e0b;
+            --warna-background: #ffffff;
+            --warna-border: #e5e7eb;
+            --teks-utama: #1f2937;
+            --teks-ringan: #6b7280;
+        }
 
-        <form method="POST" action="{{ route('login.store') }}" class="flex flex-col gap-6">
-            @csrf
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
 
-            <!-- Email Address -->
-            <flux:input
-                name="email"
-                :label="__('Email address')"
-                :value="old('email')"
-                type="email"
-                required
-                autofocus
-                autocomplete="email"
-                placeholder="email@example.com"
-            />
+        body {
+            margin: 0;
+            padding: 0;
+        }
 
-            <!-- Password -->
-            <div class="relative">
-                <flux:input
-                    name="password"
-                    :label="__('Password')"
-                    type="password"
-                    required
-                    autocomplete="current-password"
-                    :placeholder="__('Password')"
-                    viewable
-                />
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-                @if (Route::has('password.request'))
-                    <flux:link class="absolute top-0 text-sm end-0" :href="route('password.request')" wire:navigate>
-                        {{ __('Forgot your password?') }}
-                    </flux:link>
+        .login-container::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(30, 126, 52, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .login-container::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            pointer-events: none;
+        }
+
+        .login-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 450px;
+            padding: 2rem;
+        }
+
+        .login-card {
+            background: var(--warna-background);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(30, 126, 52, 0.08);
+            border: 1px solid rgba(30, 126, 52, 0.1);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--warna-utama) 0%, var(--warna-utama-gelap) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 30px;
+        }
+
+        .login-header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--teks-utama);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .login-header p {
+            color: var(--teks-ringan);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--teks-utama);
+            display: block;
+        }
+
+        .form-group input {
+            padding: 0.95rem 1rem;
+            border: 1.5px solid var(--warna-border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--teks-utama);
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--warna-utama);
+            background: var(--warna-background);
+            box-shadow: 0 0 0 3px rgba(30, 126, 52, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: var(--teks-ringan);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .forgot-password {
+            position: absolute;
+            top: 2.4rem;
+            right: 0;
+            font-size: 0.8rem;
+            color: var(--warna-utama);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: var(--warna-utama-gelap);
+            text-decoration: underline;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--warna-utama);
+            border-radius: 4px;
+        }
+
+        .checkbox-group label {
+            font-size: 0.875rem;
+            color: var(--teks-utama);
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--warna-utama) 0%, var(--warna-utama-gelap) 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            box-shadow: 0 10px 25px rgba(30, 126, 52, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(30, 126, 52, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-prompt {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--warna-border);
+            font-size: 0.875rem;
+            color: var(--teks-ringan);
+        }
+
+        .signup-prompt a {
+            color: var(--warna-utama);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .signup-prompt a:hover {
+            color: var(--warna-utama-gelap);
+            text-decoration: underline;
+        }
+
+        .status-message {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 1.5px solid #6ee7b7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #059669;
+            font-size: 0.875rem;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 1.5px solid #fca5a5;
+            border-radius: 10px;
+            padding: 1rem;
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .error-field {
+            border-color: #ef4444 !important;
+        }
+
+        .error-text {
+            color: #dc2626;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 640px) {
+            .login-wrapper {
+                padding: 1rem;
+            }
+
+            .login-card {
+                padding: 2rem 1.5rem;
+                border-radius: 16px;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .forgot-password {
+                position: static;
+                display: block;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+
+    <div class="login-container">
+        <div class="login-wrapper">
+            <div class="login-card">
+                <!-- Header -->
+                <div class="login-header">
+                    <div class="logo-icon">🕌</div>
+                    <h1>Portal Masjid</h1>
+                    <p>Masuk dengan akun Anda untuk melanjutkan</p>
+                </div>
+
+                <!-- Pesan Sukses -->
+                @if (session('status'))
+                    <div class="status-message">
+                        ✓ {{ session('status') }}
+                    </div>
+                @endif
+
+                <!-- Pesan Error -->
+                @if ($errors->any())
+                    <div class="error-message">
+                        <strong>⚠️ Ada Masalah</strong><br>
+                        Silakan periksa kembali email dan kata sandi Anda
+                    </div>
+                @endif
+
+                <!-- Form Login -->
+                <form method="POST" action="{{ route('login.store') }}" class="login-form">
+                    @csrf
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autofocus
+                            autocomplete="email"
+                            placeholder="nama@email.com"
+                            class="{{ $errors->has('email') ? 'error-field' : '' }}"
+                        />
+                        @error('email')
+                            <span class="error-text">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Kata Sandi -->
+                    <div class="form-group password-wrapper">
+                        <label for="password">Kata Sandi</label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="current-password"
+                            placeholder="••••••••"
+                            class="{{ $errors->has('password') ? 'error-field' : '' }}"
+                        />
+                        @error('password')
+                            <span class="error-text">{{ $message }}</span>
+                        @enderror
+
+                        @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}" class="forgot-password" wire:navigate>
+                                Lupa kata sandi?
+                            </a>
+                        @endif
+                    </div>
+
+                    <!-- Ingat Saya -->
+                    <div class="checkbox-group">
+                        <input
+                            id="remember"
+                            type="checkbox"
+                            name="remember"
+                            {{ old('remember') ? 'checked' : '' }}
+                        />
+                        <label for="remember">Ingat saya di perangkat ini</label>
+                    </div>
+
+                    <!-- Tombol Masuk -->
+                    <button type="submit" class="submit-btn" data-test="login-button">
+                        Masuk ke Portal
+                    </button>
+                </form>
+
+                <!-- Daftar Akun Baru -->
+                @if (Route::has('register'))
+                    <div class="signup-prompt">
+                        Belum punya akun? 
+                        <a href="{{ route('register') }}" wire:navigate>Daftar di sini</a>
+                    </div>
                 @endif
             </div>
-
-            <!-- Remember Me -->
-            <flux:checkbox name="remember" :label="__('Remember me')" :checked="old('remember')" />
-
-            <div class="flex items-center justify-end">
-                <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
-                    {{ __('Log in') }}
-                </flux:button>
-            </div>
-        </form>
-
-        @if (Route::has('register'))
-            <div class="space-x-1 text-sm text-center rtl:space-x-reverse text-zinc-600 dark:text-zinc-400">
-                <span>{{ __('Don\'t have an account?') }}</span>
-                <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
-            </div>
-        @endif
+        </div>
     </div>
-</x-layouts::auth>
+</x-layouts::base>

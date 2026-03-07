@@ -21,8 +21,8 @@
                         Melayani umat dengan sepenuh hati. Tempat beribadah yang nyaman, aman, dan dilengkapi fasilitas modern.
                     </p>
                     <div class="flex gap-4">
-                        <a href="#kontak" class="px-8 py-3 bg-white text-amber-700 font-bold rounded-lg hover:bg-amber-50 transition">
-                            Hubungi Kami
+                        <a href="{{ route('dashboard') }}" class="px-8 py-3 bg-white text-amber-700 font-bold rounded-lg hover:bg-amber-50 transition">
+                            Portal Masjid
                         </a>
                         <a href="#fasilitas" class="px-8 py-3 bg-amber-600 text-white font-bold rounded-lg hover:bg-amber-700 transition border-2 border-white">
                             Lihat Fasilitas

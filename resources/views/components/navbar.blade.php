@@ -17,7 +17,8 @@ $active = $active ?? 'home';
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8">
-                <a href="/" class="text-amber-900 hover:text-amber-700 font-medium transition {{ $active === 'home' ? 'border-b-2 border-amber-700' : '' }}">
+                <a href="/"
+                    class="text-amber-900 hover:text-amber-700 font-medium transition {{ $active === 'home' ? 'border-b-2 border-amber-700' : '' }}">
                     Beranda
                 </a>
                 <a href="#tentang" class="text-amber-700 hover:text-amber-600 transition">
@@ -29,13 +30,25 @@ $active = $active ?? 'home';
                 <a href="#kontak" class="text-amber-700 hover:text-amber-600 transition">
                     Kontak
                 </a>
+
+                <!-- Portal -->
+                @auth
+                    <a href="{{ route('dashboard') }}" class="text-amber-700 hover:text-amber-600 transition">
+                        Portal
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="text-amber-700 hover:text-amber-600 transition">
+                        Portal
+                    </a>
+                @endauth
             </div>
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button class="text-amber-700 hover:text-amber-600" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
@@ -47,13 +60,24 @@ $active = $active ?? 'home';
             <a href="#tentang" class="block px-3 py-2 text-amber-700 hover:bg-amber-50 rounded">Tentang</a>
             <a href="#fasilitas" class="block px-3 py-2 text-amber-700 hover:bg-amber-50 rounded">Fasilitas</a>
             <a href="#kontak" class="block px-3 py-2 text-amber-700 hover:bg-amber-50 rounded">Kontak</a>
+
+            {{-- Portal --}}
+            @auth
+                <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-amber-700 hover:bg-amber-50 rounded">
+                    Portal
+                </a>
+            @else
+                <a href="{{ route('login') }}" class="block px-3 py-2 text-amber-700 hover:bg-amber-50 rounded">
+                    Portal
+                </a>
+            @endauth
         </div>
     </div>
 </nav>
 
 <script>
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('hidden');
-}
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('hidden');
+    }
 </script>
