@@ -26,7 +26,7 @@
         <!-- Content -->
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
-                Blog & Artikel
+                Blog & Artikel (Lagi Tahahap Pengembangan)
             </h1>
             <p class="text-xl text-amber-100 max-w-2xl mx-auto">
                 Baca artikel inspiratif, tips ibadah, dan berita terkini dari Masjid Syatho
