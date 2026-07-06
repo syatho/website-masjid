@@ -54,22 +54,18 @@ class AmbulanceJournal extends Model
 
         // Hapus file yang dihapus dari form saat edit
         static::saving(function (AmbulanceJournal $journal) {
-            foreach (['images', 'videos'] as $field) {
-                $old = $journal->getOriginal($field) ?? [];
-                $new = $journal->$field ?? [];
-                $removed = array_diff($old, $new);
-                foreach ($removed as $file) {
-                    Storage::disk('public')->delete($file);
-                }
+            $old = $journal->getOriginal('images') ?? [];
+            $new = $journal->images ?? [];
+            $removed = array_diff($old, $new);
+            foreach ($removed as $file) {
+                Storage::disk('public')->delete($file);
             }
         });
 
         // Hapus semua file saat record dihapus
         static::deleting(function (AmbulanceJournal $journal) {
-            foreach (['images', 'videos'] as $field) {
-                foreach ($journal->$field ?? [] as $file) {
-                    Storage::disk('public')->delete($file);
-                }
+            foreach ($journal->images ?? [] as $file) {
+                Storage::disk('public')->delete($file);
             }
         });
     }
@@ -77,6 +73,24 @@ class AmbulanceJournal extends Model
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('status', 'published');
+    }
+
+    // Ubah link video (YouTube, Vimeo, Google Drive, dll) jadi URL embed untuk iframe
+    public static function toEmbedVideoUrl(string $url): string
+    {
+        if (preg_match('/(?:youtube\.com\/watch\?v=|youtube\.com\/shorts\/|youtu\.be\/)([\w-]+)/', $url, $m)) {
+            return "https://www.youtube.com/embed/{$m[1]}";
+        }
+
+        if (preg_match('/vimeo\.com\/(\d+)/', $url, $m)) {
+            return "https://player.vimeo.com/video/{$m[1]}";
+        }
+
+        if (preg_match('/drive\.google\.com\/file\/d\/([\w-]+)/', $url, $m)) {
+            return "https://drive.google.com/file/d/{$m[1]}/preview";
+        }
+
+        return $url;
     }
 
     // Karakter yang dipakai untuk ID pendek — hindari 0/O dan 1/I/L yang mirip

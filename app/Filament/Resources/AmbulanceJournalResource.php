@@ -97,12 +97,19 @@ class AmbulanceJournalResource extends Resource
 
                     Section::make('Video Dokumentasi')
                         ->schema([
-                            FileUpload::make('videos')
+                            Repeater::make('videos')
                                 ->label('')
-                                ->multiple()
-                                ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'])
-                                ->directory('ambulance-journals/videos')
-                                ->disk('public')
+                                ->simple(
+                                    TextInput::make('url')
+                                        ->label('Link Video')
+                                        ->required()
+                                        ->url()
+                                        ->placeholder('Contoh: https://youtube.com/watch?v=...'),
+                                )
+                                ->addActionLabel('Tambah Video')
+                                ->reorderable()
+                                ->collapsible()
+                                ->defaultItems(0)
                                 ->columnSpanFull(),
                         ]),
 

@@ -131,14 +131,15 @@ new #[Title('Jurnal Ambulans - Masjid Syatho Sedan')] #[Layout('layouts.base', [
                         </h2>
                         <div class="space-y-4">
                             @foreach ($journal->videos as $video)
-                                <video
-                                    controls
-                                    class="w-full rounded-xl bg-black max-h-96"
-                                    preload="metadata"
-                                >
-                                    <source src="{{ asset('storage/'.$video) }}">
-                                    Browser Anda tidak mendukung pemutaran video.
-                                </video>
+                                <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
+                                    <iframe
+                                        src="{{ \App\Models\AmbulanceJournal::toEmbedVideoUrl($video) }}"
+                                        class="w-full h-full"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
                             @endforeach
                         </div>
                     </div>
