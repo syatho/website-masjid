@@ -155,8 +155,7 @@ class AmbulanceJournalResource extends Resource
                                 ->label('Driver')
                                 ->options(User::orderBy('name')->pluck('name', 'id'))
                                 ->searchable()
-                                ->preload()
-                                ->required(),
+                                ->preload(),
                         ]),
                 ])
                 ->columnSpan(1),
