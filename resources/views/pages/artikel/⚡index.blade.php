@@ -191,7 +191,7 @@ new #[Title('Blog & Artikel')] #[Layout('layouts.base', ['active' => 'artikel'])
 
                     {{-- Artikel utama --}}
                     <div class="lg:col-span-2">
-                        <a href="{{ route('artikel.show', $utama->slug) }}" class="block group rounded-2xl overflow-hidden bg-white shadow-xl border-2 border-amber-100 hover:shadow-2xl hover:border-amber-400 transition">
+                        <a href="{{ route('artikel.show', $utama->routeParams()) }}" class="block group rounded-2xl overflow-hidden bg-white shadow-xl border-2 border-amber-100 hover:shadow-2xl hover:border-amber-400 transition">
                             <div class="relative overflow-hidden h-72 bg-gradient-to-br from-amber-600 to-amber-800">
                                 @if ($utama->image)
                                     <img src="{{ asset('storage/'.$utama->image) }}" alt="{{ $utama->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -226,7 +226,7 @@ new #[Title('Blog & Artikel')] #[Layout('layouts.base', ['active' => 'artikel'])
                     {{-- Artikel unggulan lainnya --}}
                     <div class="flex flex-col gap-5">
                         @foreach ($this->featuredArticles->skip(1) as $art)
-                            <a href="{{ route('artikel.show', $art->slug) }}" class="group flex gap-4 rounded-xl overflow-hidden bg-white shadow border border-amber-100 hover:shadow-lg hover:border-amber-300 transition p-4">
+                            <a href="{{ route('artikel.show', $art->routeParams()) }}" class="group flex gap-4 rounded-xl overflow-hidden bg-white shadow border border-amber-100 hover:shadow-lg hover:border-amber-300 transition p-4">
                                 <div class="w-24 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-amber-500 to-amber-700">
                                     @if ($art->image)
                                         <img src="{{ asset('storage/'.$art->image) }}" alt="{{ $art->title }}" class="w-full h-full object-cover group-hover:scale-110 transition">
@@ -308,7 +308,7 @@ new #[Title('Blog & Artikel')] #[Layout('layouts.base', ['active' => 'artikel'])
                 @else
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         @foreach ($this->articles as $art)
-                            <a href="{{ route('artikel.show', $art->slug) }}" wire:navigate
+                            <a href="{{ route('artikel.show', $art->routeParams()) }}" wire:navigate
                                class="group block rounded-xl overflow-hidden bg-white shadow border border-amber-100 hover:shadow-xl hover:border-amber-300 transition">
                                 <div class="relative h-48 bg-gradient-to-br from-amber-500 to-amber-700 overflow-hidden">
                                     @if ($art->image)

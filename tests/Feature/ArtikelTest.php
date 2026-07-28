@@ -36,7 +36,7 @@ test('komponen public artikel index bisa melakukan pencarian', function () {
 test('halaman detail artikel yang diterbitkan bisa diakses', function () {
     $article = Article::factory()->published()->create();
 
-    $this->get(route('artikel.show', $article->slug))
+    $this->get(route('artikel.show', $article->routeParams()))
         ->assertOk()
         ->assertSee($article->title);
 });
@@ -44,13 +44,17 @@ test('halaman detail artikel yang diterbitkan bisa diakses', function () {
 test('halaman detail artikel draft tidak bisa diakses publik', function () {
     $article = Article::factory()->draft()->create();
 
-    $this->get(route('artikel.show', $article->slug))->assertNotFound();
+    $this->get(route('artikel.show', [
+        'year' => now()->format('Y'),
+        'month' => now()->format('m'),
+        'slug' => $article->slug,
+    ]))->assertNotFound();
 });
 
 test('view count bertambah ketika artikel dilihat', function () {
     $article = Article::factory()->published()->create(['views' => 0]);
 
-    $this->get(route('artikel.show', $article->slug));
+    $this->get(route('artikel.show', $article->routeParams()));
 
     expect($article->fresh()->views)->toBe(1);
 });

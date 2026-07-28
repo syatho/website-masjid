@@ -62,4 +62,13 @@ class Article extends Model
     {
         return $query->where('featured', true);
     }
+
+    public function routeParams(): array
+    {
+        return [
+            'year' => $this->published_at->format('Y'),
+            'month' => $this->published_at->format('m'),
+            'slug' => $this->slug,
+        ];
+    }
 }

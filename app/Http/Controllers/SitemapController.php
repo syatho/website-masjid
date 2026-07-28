@@ -13,7 +13,7 @@ class SitemapController extends Controller
     {
         $articles = Article::published()
             ->orderByDesc('published_at')
-            ->get(['slug', 'updated_at']);
+            ->get(['slug', 'published_at', 'updated_at']);
 
         $generalJournals = GeneralJournal::published()
             ->orderByDesc('journal_date')

@@ -10,12 +10,14 @@ new #[Layout('layouts.base', ['active' => 'artikel'])] class extends Component {
 
     public string $slug = '';
 
-    public function mount(string $slug): void
+    public function mount(string $year, string $month, string $slug): void
     {
         $this->article = Article::query()
-            ->with(['category', 'tags', 'user'])
+            ->with(['category', 'tags'])
             ->published()
             ->where('slug', $slug)
+            ->whereYear('published_at', $year)
+            ->whereMonth('published_at', $month)
             ->firstOrFail();
 
         $this->article->increment('views');
@@ -89,8 +91,6 @@ new #[Layout('layouts.base', ['active' => 'artikel'])] class extends Component {
                     <span class="text-sm text-amber-600">{{ $article->published_at?->translatedFormat('d F Y') }}</span>
                     <span class="text-amber-300">·</span>
                     <span class="text-sm text-amber-600">{{ number_format($article->views) }} kali dilihat</span>
-                    <span class="text-amber-300">·</span>
-                    <span class="text-sm text-amber-600">Oleh {{ $article->user->name }}</span>
                 </div>
 
                 <h1 class="text-3xl md:text-4xl font-bold text-amber-900 leading-tight mb-6">
@@ -151,7 +151,7 @@ new #[Layout('layouts.base', ['active' => 'artikel'])] class extends Component {
                         <h3 class="font-bold text-amber-900 mb-4 text-sm uppercase tracking-wide">Artikel Terkait</h3>
                         <div class="space-y-4">
                             @foreach ($this->relatedArticles as $art)
-                                <a href="{{ route('artikel.show', $art->slug) }}" wire:navigate class="group flex gap-3">
+                                <a href="{{ route('artikel.show', $art->routeParams()) }}" wire:navigate class="group flex gap-3">
                                     <div class="w-16 h-14 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-amber-500 to-amber-700">
                                         @if ($art->image)
                                             <img src="{{ asset('storage/'.$art->image) }}" alt="{{ $art->title }}" class="w-full h-full object-cover group-hover:scale-110 transition">

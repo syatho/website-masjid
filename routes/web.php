@@ -18,7 +18,9 @@ Route::livewire('/jurnal/{id}', 'pages::jurnal.show')->name('jurnal.show');
 
 Route::redirect('/blog', '/artikel');
 Route::livewire('/artikel', 'pages::artikel.index')->name('blog');
-Route::livewire('/artikel/{slug}', 'pages::artikel.detail')->name('artikel.show');
+Route::livewire('/artikel/{year}/{month}/{slug}', 'pages::artikel.detail')
+    ->where(['year' => '[0-9]{4}', 'month' => '[0-9]{2}'])
+    ->name('artikel.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::redirect('dashboard', '/portal');

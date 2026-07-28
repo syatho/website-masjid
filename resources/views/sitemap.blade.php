@@ -56,7 +56,7 @@
     {{-- Artikel --}}
     @foreach ($articles as $article)
     <url>
-        <loc>{{ url('/artikel/' . $article->slug) }}</loc>
+        <loc>{{ route('artikel.show', $article->routeParams()) }}</loc>
         <lastmod>{{ $article->updated_at->toAtomString() }}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
