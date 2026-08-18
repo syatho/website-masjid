@@ -23,6 +23,11 @@ new #[Layout('layouts.base', ['active' => 'artikel'])] class extends Component {
         $this->article->increment('views');
     }
 
+    public function title(): string
+    {
+        return $this->article->title.' - Masjid Syatho Sedan';
+    }
+
     #[Computed]
     public function relatedArticles(): mixed
     {
@@ -38,6 +43,26 @@ new #[Layout('layouts.base', ['active' => 'artikel'])] class extends Component {
 }; ?>
 
 <div>
+    @php
+        $articleDescription = $article->excerpt ? Str::limit(strip_tags($article->excerpt), 160) : Str::limit(strip_tags($article->content), 160);
+        $articleOgImage = $article->image ? asset('storage/'.$article->image) : asset('images/halaman_depan.png');
+    @endphp
+    @push('meta-description')
+        {{ $articleDescription }}
+    @endpush
+    @push('og-meta')
+        <meta property="og:title" content="{{ $article->title }} — Masjid Syatho Sedan" />
+        <meta property="og:description" content="{{ $articleDescription }}" />
+        <meta property="og:url" content="{{ route('artikel.show', $article->routeParams()) }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="{{ $articleOgImage }}" />
+    @endpush
+    @push('twitter-meta')
+        <meta name="twitter:title" content="{{ $article->title }} — Masjid Syatho Sedan" />
+        <meta name="twitter:description" content="{{ $articleDescription }}" />
+        <meta name="twitter:image" content="{{ $articleOgImage }}" />
+    @endpush
+
     {{-- Breadcrumb --}}
     <nav class="bg-amber-50 border-b border-amber-100 py-3">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,7 +140,7 @@ new #[Layout('layouts.base', ['active' => 'artikel'])] class extends Component {
                             prose-img:rounded-xl prose-img:shadow-md
                             prose-hr:border-amber-200
                             prose-li:text-amber-950">
-                    {!! $article->content !!}
+                    {!! $article->contentWithAccessibleImages() !!}
                 </div>
 
                 {{-- Tags --}}

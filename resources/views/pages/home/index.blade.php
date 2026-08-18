@@ -1,4 +1,8 @@
-<x-layouts::base title="Halaman Beranda" active="home">
+<x-layouts::base
+    title="Halaman Beranda"
+    active="home"
+    description="Selamat datang di website Masjid Besar Syatho Sedan, Rembang. Temukan jadwal shalat, agenda kajian, kegiatan sosial, layanan ambulans, dan artikel islami terbaru di sini."
+>
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800 overflow-hidden pt-16 pb-16 md:pt-0 md:pb-0 md:h-[600px]">
         <!-- Background Pattern -->

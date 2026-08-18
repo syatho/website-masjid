@@ -1,4 +1,8 @@
-<x-layouts::base title="Fasilitas - Masjid Syatho Sedan" active="fasilitas">
+<x-layouts::base
+    title="Fasilitas - Masjid Syatho Sedan"
+    active="fasilitas"
+    description="Kenali fasilitas Masjid Besar Syatho Sedan, mulai dari ruang shalat, tempat wudhu, layanan ambulans, hingga sarana kegiatan sosial dan pendidikan untuk umat."
+>
 
     {{-- Hero Section --}}
     <section class="relative bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800 overflow-hidden pt-16 pb-20 md:pt-24 md:pb-24">

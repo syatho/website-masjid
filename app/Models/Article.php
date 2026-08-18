@@ -71,4 +71,17 @@ class Article extends Model
             'slug' => $this->slug,
         ];
     }
+
+    /**
+     * Rich-text content images are inserted via the editor without alt text.
+     * Fall back to the article title so images stay accessible/indexable.
+     */
+    public function contentWithAccessibleImages(): string
+    {
+        return preg_replace_callback(
+            '/<img(?![^>]*\balt=)([^>]*)>/i',
+            fn (array $matches) => '<img alt="'.e($this->title).'"'.$matches[1].'>',
+            $this->content ?? ''
+        );
+    }
 }

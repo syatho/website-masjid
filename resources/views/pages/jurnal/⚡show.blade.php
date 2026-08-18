@@ -15,11 +15,22 @@ new #[Title('Jurnal Umum - Masjid Syatho Sedan')] #[Layout('layouts.base', ['act
 }; ?>
 
 <div>
+    @php
+        $journalOgTitle = $journal->title.' — Jurnal Umum Masjid Syatho Sedan';
+        $journalOgDescription = $journal->description ? Str::limit($journal->description, 160) : 'Jurnal kegiatan Masjid Syatho Sedan, '.$journal->journal_date->translatedFormat('d F Y');
+        $journalOgImage = asset('images/halaman_depan.png');
+    @endphp
     @push('og-meta')
-        <meta property="og:title" content="{{ $journal->title }} — Jurnal Umum Masjid Syatho Sedan" />
-        <meta property="og:description" content="{{ $journal->description ? Str::limit($journal->description, 160) : 'Jurnal kegiatan Masjid Syatho Sedan, '.$journal->journal_date->translatedFormat('d F Y') }}" />
+        <meta property="og:title" content="{{ $journalOgTitle }}" />
+        <meta property="og:description" content="{{ $journalOgDescription }}" />
         <meta property="og:url" content="{{ route('jurnal.show', $journal->id) }}" />
         <meta property="og:type" content="article" />
+        <meta property="og:image" content="{{ $journalOgImage }}" />
+    @endpush
+    @push('twitter-meta')
+        <meta name="twitter:title" content="{{ $journalOgTitle }}" />
+        <meta name="twitter:description" content="{{ $journalOgDescription }}" />
+        <meta name="twitter:image" content="{{ $journalOgImage }}" />
     @endpush
 
     {{-- ====== HERO ====== --}}

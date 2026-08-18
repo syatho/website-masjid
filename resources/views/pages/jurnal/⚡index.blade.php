@@ -8,7 +8,7 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-new #[Title('Jurnal Umum - Masjid Syatho Sedan')] #[Layout('layouts.base', ['active' => 'jurnal'])] class extends Component {
+new #[Title('Jurnal Umum - Masjid Syatho Sedan')] #[Layout('layouts.base', ['active' => 'jurnal', 'description' => 'Ikuti jurnal kegiatan rutin Masjid Besar Syatho Sedan, dokumentasi kajian, kerja bakti, dan agenda sosial lainnya.'])] class extends Component {
     use WithPagination;
 
     #[Url(as: 'cari', except: '')]

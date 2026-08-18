@@ -1,4 +1,10 @@
-<x-layouts::base title="Layanan Ambulans - Masjid Syatho Sedan" active="ambulans" whatsappPhone="6282147977779" whatsappLabel="Hubungi Ambulans">
+<x-layouts::base
+    title="Layanan Ambulans - Masjid Syatho Sedan"
+    active="ambulans"
+    whatsappPhone="6282147977779"
+    whatsappLabel="Hubungi Ambulans"
+    description="Layanan ambulans gratis Masjid Besar Syatho Sedan siap siaga 24 jam untuk membantu warga sekitar dalam kondisi darurat maupun kebutuhan rujukan medis."
+>
 
     {{-- Hero Section --}}
     <section class="relative bg-gradient-to-br from-red-700 via-red-600 to-red-800 overflow-hidden pt-16 pb-16 md:pt-20 md:pb-20">

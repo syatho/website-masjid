@@ -19,18 +19,44 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Masjid Syatho">
 
-<meta name="description" content="Website Masjid Syatho Sedan - Melayani umat dengan sepenuh hati" />
+@php
+    $defaultDescription = 'Website resmi Masjid Besar Syatho Sedan, Rembang — informasi jadwal shalat, kajian rutin, kegiatan sosial, layanan ambulans, dan artikel islami untuk umat.';
+    $descriptionOverride = trim($__env->yieldPushContent('meta-description'));
+    $metaDescription = $descriptionOverride !== '' ? $descriptionOverride : ($description ?? $defaultDescription);
+    $ogMetaOverride = trim($__env->yieldPushContent('og-meta'));
+    $twitterMetaOverride = trim($__env->yieldPushContent('twitter-meta'));
+@endphp
+
+<meta name="description" content="{{ $metaDescription }}" />
 <meta name="keywords" content="masjid, jadwal shalat, kajian Islam, komunitas Muslim" />
 <meta name="google-site-verification" content="rnppDMJTkKP3WB3d2T3YZLJi3yfnCuRT_lIpLLNkCC8" />
+
+<link rel="canonical" href="{{ $canonical ?? url()->current() }}" />
 
 {{-- Open Graph (default, dapat di-override per halaman via @push('og-meta')) --}}
 <meta property="og:site_name" content="Masjid Syatho Sedan" />
 <meta property="og:locale" content="id_ID" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="{{ url()->current() }}" />
-<meta property="og:title" content="{{ filled($title ?? null) ? $title.' - Masjid Syatho Sedan' : 'Masjid Syatho Sedan' }}" />
-<meta property="og:description" content="Website Masjid Syatho Sedan - Melayani umat dengan sepenuh hati" />
-@stack('og-meta')
+@if ($ogMetaOverride !== '')
+    {!! $ogMetaOverride !!}
+@else
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:title" content="{{ filled($title ?? null) ? $title.' - Masjid Syatho Sedan' : 'Masjid Syatho Sedan' }}" />
+    <meta property="og:description" content="{{ $metaDescription }}" />
+    <meta property="og:image" content="{{ asset('images/halaman_depan.png') }}" />
+    <meta property="og:image:width" content="960" />
+    <meta property="og:image:height" content="881" />
+@endif
+
+{{-- X (Twitter) card (default, dapat di-override per halaman via @push('twitter-meta')) --}}
+<meta name="twitter:card" content="summary_large_image" />
+@if ($twitterMetaOverride !== '')
+    {!! $twitterMetaOverride !!}
+@else
+    <meta name="twitter:title" content="{{ filled($title ?? null) ? $title.' - Masjid Syatho Sedan' : 'Masjid Syatho Sedan' }}" />
+    <meta name="twitter:description" content="{{ $metaDescription }}" />
+    <meta name="twitter:image" content="{{ asset('images/halaman_depan.png') }}" />
+@endif
 
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

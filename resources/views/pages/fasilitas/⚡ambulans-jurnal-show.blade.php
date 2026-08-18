@@ -17,16 +17,22 @@ new #[Title('Jurnal Ambulans - Masjid Syatho Sedan')] #[Layout('layouts.base', [
 }; ?>
 
 <div>
+    @php
+        $journalOgTitle = $journal->title.' — Jurnal Ambulans Masjid Syatho Sedan';
+        $journalOgDescription = $journal->description ? Str::limit($journal->description, 160) : 'Jurnal perjalanan ambulans Masjid Syatho Sedan, '.$journal->journal_date->translatedFormat('d F Y');
+        $journalOgImage = ($journal->images && count($journal->images) > 0) ? asset('storage/'.$journal->images[0]) : asset('images/halaman_depan.png');
+    @endphp
     @push('og-meta')
-        <meta property="og:title" content="{{ $journal->title }} — Jurnal Ambulans Masjid Syatho Sedan" />
-        <meta property="og:description" content="{{ $journal->description ? Str::limit($journal->description, 160) : 'Jurnal perjalanan ambulans Masjid Syatho Sedan, '.$journal->journal_date->translatedFormat('d F Y') }}" />
+        <meta property="og:title" content="{{ $journalOgTitle }}" />
+        <meta property="og:description" content="{{ $journalOgDescription }}" />
         <meta property="og:url" content="{{ route('fasilitas.ambulans.jurnal.show', $journal->id) }}" />
         <meta property="og:type" content="article" />
-        @if ($journal->images && count($journal->images) > 0)
-            <meta property="og:image" content="{{ asset('storage/'.$journal->images[0]) }}" />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
-        @endif
+        <meta property="og:image" content="{{ $journalOgImage }}" />
+    @endpush
+    @push('twitter-meta')
+        <meta name="twitter:title" content="{{ $journalOgTitle }}" />
+        <meta name="twitter:description" content="{{ $journalOgDescription }}" />
+        <meta name="twitter:image" content="{{ $journalOgImage }}" />
     @endpush
 
     {{-- ====== CONTENT ====== --}}

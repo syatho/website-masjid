@@ -10,7 +10,7 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-new #[Title('Blog & Artikel')] #[Layout('layouts.base', ['active' => 'artikel'])] class extends Component {
+new #[Title('Blog & Artikel')] #[Layout('layouts.base', ['active' => 'artikel', 'description' => 'Kumpulan artikel dan inspirasi islami dari Masjid Besar Syatho Sedan seputar ibadah, kajian, dan kehidupan umat sehari-hari.'])] class extends Component {
     use WithPagination;
 
     #[Url(as: 'cari', except: '')]
