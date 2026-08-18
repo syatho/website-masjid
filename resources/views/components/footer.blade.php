@@ -94,5 +94,9 @@
             <p>&copy; {{ now()->year }} Masjid Syatho Sedan Rembang. Semua hak dilindungi.</p>
             <p>Dikelola dengan amanah dan profesional untuk kemajuan umat</p>
         </div>
+
+        <div class="text-center text-xs text-amber-300 mt-4">
+            <p>Website ini ditenagai oleh <a href="https://barizaloka.id" class="hover:text-amber-100 transition">https://barizaloka.id</a></p>
+        </div>
     </div>
 </footer>
